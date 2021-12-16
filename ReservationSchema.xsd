@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="http://google.com/ReservationSchema.xsd"
+           elementFormDefault="qualified">
+
+    <xs:complexType name="memberType">
+        <xs:sequence>
+            <xs:element name="Name" type="xs:string"/>
+            <xs:element name="Country" type="xs:string"/>
+            <xs:element name="City" type="xs:string"/>
+            <xs:element name="Birthday" type="xs:date"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="daysType">
+        <xs:sequence>
+            <xs:element name="Day" type="xs:date" maxOccurs="5"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="familyType">
+        <xs:sequence>
+            <xs:element name="Member" type="memberType" maxOccurs="7"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="Reservations">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Reservation">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="Family" type="familyType"/>
+                            <xs:element name="Days" type="daysType"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>
