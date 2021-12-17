@@ -20,4 +20,44 @@
             <Day>31/11/2004</Day>
         </Days>
     </Reservation>
+    <Reservation>
+        <Family>
+            <Member>
+                <Name>Afonsina</Name>
+                <Country>Portugal</Country>
+                <City>Porto</City>
+                <Birthday>31/10/2000</Birthday>
+            </Member>
+            <Member>
+                <Name>Joaquina</Name>
+                <Country>Portugal</Country>
+                <City>Porto</City>
+                <Birthday>10/10/1989</Birthday>
+            </Member>
+        </Family>
+        <Days>
+            <Day>31/10/2000</Day>
+            <Day>24/11/2004</Day>
+        </Days>
+    </Reservation>
+    <Reservation>
+        <Family>
+            <Member>
+                <Name>Luisa</Name>
+                <Country>Portugal</Country>
+                <City>Braga</City>
+                <Birthday>31/04/2000</Birthday>
+            </Member>
+            <Member>
+                <Name>Aurélio</Name>
+                <Country>Portugal</Country>
+                <City>Guimarães</City>
+                <Birthday>10/10/1969</Birthday>
+            </Member>
+        </Family>
+        <Days>
+            <Day>07/12/2000</Day>
+            <Day>22/11/2004</Day>
+        </Days>
+    </Reservation>
 </Reservations>
