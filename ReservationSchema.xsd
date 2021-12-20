@@ -27,7 +27,7 @@
     <xs:element name="Reservations">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="Reservation">
+                <xs:element name="Reservation" maxOccurs="unbounded">
                     <xs:complexType>
                         <xs:sequence>
                             <xs:element name="Family" type="familyType"/>
