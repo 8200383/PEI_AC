@@ -1,63 +1,23 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<Reservations xmlns="http://google.com/ReservationSchema.xsd">
+<Reservations xmlns="https://www.w3schools.com/ReservationSchema">
     <Reservation>
         <Family>
             <Member>
                 <Name>Joel</Name>
                 <Country>Portugal</Country>
                 <City>Porto</City>
-                <Birthday>31/10/2000</Birthday>
+                <Birthday>2002-09-24</Birthday>
             </Member>
             <Member>
                 <Name>Pedro</Name>
                 <Country>Portugal</Country>
                 <City>Felgueiras</City>
-                <Birthday>10/10/1999</Birthday>
+                <Birthday>2002-10-30</Birthday>
             </Member>
         </Family>
         <Days>
-            <Day>31/10/2000</Day>
-            <Day>31/11/2004</Day>
-        </Days>
-    </Reservation>
-    <Reservation>
-        <Family>
-            <Member>
-                <Name>Afonsina</Name>
-                <Country>Portugal</Country>
-                <City>Porto</City>
-                <Birthday>31/10/2000</Birthday>
-            </Member>
-            <Member>
-                <Name>Joaquina</Name>
-                <Country>Portugal</Country>
-                <City>Porto</City>
-                <Birthday>10/10/1989</Birthday>
-            </Member>
-        </Family>
-        <Days>
-            <Day>31/10/2000</Day>
-            <Day>24/11/2004</Day>
-        </Days>
-    </Reservation>
-    <Reservation>
-        <Family>
-            <Member>
-                <Name>Luisa</Name>
-                <Country>Portugal</Country>
-                <City>Braga</City>
-                <Birthday>31/04/2000</Birthday>
-            </Member>
-            <Member>
-                <Name>Aurélio</Name>
-                <Country>Portugal</Country>
-                <City>Guimarães</City>
-                <Birthday>10/10/1969</Birthday>
-            </Member>
-        </Family>
-        <Days>
-            <Day>07/12/2000</Day>
-            <Day>22/11/2004</Day>
+            <Day>2014-09-24</Day>
+            <Day>2014-09-25</Day>
         </Days>
     </Reservation>
 </Reservations>

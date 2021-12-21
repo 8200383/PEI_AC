@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
-           targetNamespace="http://google.com/ReservationSchema.xsd"
+           targetNamespace="https://www.w3schools.com/ReservationSchema"
+           xmlns:rs="https://www.w3schools.com/ReservationSchema"
            elementFormDefault="qualified">
 
-    <xs:complexType name="memberType">
+    <xs:complexType name="MemberType">
         <xs:sequence>
             <xs:element name="Name" type="xs:string"/>
             <xs:element name="Country" type="xs:string"/>
@@ -12,15 +13,15 @@
         </xs:sequence>
     </xs:complexType>
 
-    <xs:complexType name="daysType">
+    <xs:complexType name="DaysType">
         <xs:sequence>
             <xs:element name="Day" type="xs:date" maxOccurs="5"/>
         </xs:sequence>
     </xs:complexType>
 
-    <xs:complexType name="familyType">
+    <xs:complexType name="FamilyType">
         <xs:sequence>
-            <xs:element name="Member" type="memberType" maxOccurs="7"/>
+            <xs:element name="Member" type="rs:MemberType" maxOccurs="7"/>
         </xs:sequence>
     </xs:complexType>
 
@@ -30,8 +31,8 @@
                 <xs:element name="Reservation" maxOccurs="unbounded">
                     <xs:complexType>
                         <xs:sequence>
-                            <xs:element name="Family" type="familyType"/>
-                            <xs:element name="Days" type="daysType"/>
+                            <xs:element name="Family" type="rs:FamilyType"/>
+                            <xs:element name="Days" type="rs:DaysType"/>
                         </xs:sequence>
                     </xs:complexType>
                 </xs:element>

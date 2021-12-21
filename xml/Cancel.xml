@@ -1,2 +1,2 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<CancelReservation id="1" xmlns="http://google.com/CancelReservationSchema.xsd"/>
+<CancelReservation id="1" xmlns="https://www.w3schools.com/CancelReservationSchema"/>
