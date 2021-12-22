@@ -1,11 +1,12 @@
 xquery version "3.1";
 
-module namespace page = 'http://basex.org/modules/web-page';
+module namespace local = 'http://basex.org/modules/web-page';
 
 declare %rest:path("add")
 	%rest:POST("{$xml}")
 	%rest:consumes("application/xml")
-	function page:add($xml as item()) as item() {
+	%updating
+	function local:add($xml as item()) {
 
     let $xsd := "../xsd/ReservationSchema.xsd"
 
