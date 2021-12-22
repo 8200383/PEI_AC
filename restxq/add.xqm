@@ -10,21 +10,25 @@ declare %rest:path("add")
 
     let $xsd := "../xsd/ReservationSchema.xsd"
 
-    let $res := try {
-        let $notValid := validate:xsd($xml, $xsd)
-
-        return if ($notValid) then (
-            <res>Not Valid</res>
-        ) else (
-            <res>Valid</res>
-        )
-
+    let $validation := try {
+        validate:xsd($xml, $xsd)
     } catch validate:* {
-        <res>
+        <error>
             <code>{$err:code}</code>
             <cause>{$err:description}</cause>
-        </res>
+        </error>
     }
 
-    return $res
+    let $output := if (db:exists("santadb", "data")) then (
+        let $database := db:open("santadb", "data")
+        let $query := $database/Reservations/Reservation
+
+        return <res>None</res>
+    ) else (
+        <error>
+            <code>Database not found</code>
+        </error>
+    )
+
+    return (update:output($validation), update:output($output))
 };
