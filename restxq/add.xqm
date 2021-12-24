@@ -32,24 +32,25 @@ declare updating function local:booking($preferred_date as xs:string) {
     let $database := db:open("santadb", "data")
 
     let $booking := <Booking>
+                        <Id>{random:integer()}</Id>
                         <Date>{$preferred_date}</Date>
                         <Families>1</Families>
                     </Booking>
 
-    for $x in $database//Book/Agenda/Booking
-        let $query := $x/Date
-        return if ($query = $preferred_date) then (
+    for $x in $database//Book/Agenda
+    let $query := $x/Booking/Date
+    return if ($query = $preferred_date) then (
 
-            let $limit := $x/Families
-            return if ($limit < 3) then (
-                update:output("Succesfully Booked!"),
-                replace value of node $limit with $limit + 1
-            ) else (
-                update:output("This date is allready full!")
-            )
-
-        ) else (
+        let $limit := $x/Booking/Families
+        return if ($limit < 50) then (
             update:output("Succesfully Booked!"),
-            insert node $booking into $database//Agenda
+            replace value of node $limit with $limit + 1
+        ) else (
+            update:output("This date is allready full!")
         )
+
+    ) else (
+        update:output("Succesfully Booked!"),
+        insert node $booking into $database//Book/Agenda
+    )
 };
