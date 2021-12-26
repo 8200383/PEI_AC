@@ -25,13 +25,14 @@ declare %rest:path("remove")
         </error>
     )
 
-    return (update:output($database_exists), local:booking("2021-03-24"))
+    return (update:output($database_exists), local:deleteBooking($xml//@id))
 };
 
-declare updating function local:delete($id as xs:integer) {
+declare updating function local:deleteBooking($id as xs:integer) {
     let $database := db:open("santadb", "data")
 
     for $x in $database//Book/Agenda
     where $x[Id=$id]
-    return update:output("Succesfully Deleted!")
+    return update:output("Succesfully Deleted!"),
+    delete node $x
 };
