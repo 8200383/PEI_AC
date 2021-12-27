@@ -10,14 +10,7 @@ declare %rest:path("add")
 
     let $xsd := "../xsd/ReservationSchema.xsd"
 
-    let $validation := try {
-        validate:xsd($xml, $xsd)
-    } catch validate:* {
-        <error>
-            <code>{$err:code}</code>
-            <cause>{$err:description}</cause>
-        </error>
-    }
+    let $validation := validate:xsd($xml, $xsd)
 
     let $database_exists := if (not(db:exists("santadb", "data"))) then (
         <error>
@@ -25,7 +18,11 @@ declare %rest:path("add")
         </error>
     )
 
-    return (update:output($database_exists), local:booking("2021-03-24"))
+    return (
+        update:output($validation),
+        update:output($database_exists),
+        local:booking("2021-03-24")
+    )
 };
 
 declare updating function local:booking($preferred_date as xs:string) {
