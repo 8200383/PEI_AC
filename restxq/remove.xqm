@@ -3,7 +3,7 @@ xquery version "3.1";
 module namespace local = 'http://basex.org/modules/web-page';
 
 declare %rest:path("remove")
-  %rest:DELETE("{$xml}")
+  %rest:POST("{$xml}")
   %rest:consumes("application/xml")
   updating
   function local:remove($xml as item()) {
@@ -31,8 +31,8 @@ declare %rest:path("remove")
 declare updating function local:deleteBooking($id as xs:integer) {
     let $database := db:open("santadb", "data")
 
-    for $x in $database//Book/Agenda
-    where $x[Id=$id]
-    return update:output("Succesfully Deleted!"),
-    delete node $x
+    return (
+        update:output("Succesfully Deleted!"),
+        delete node $database/Book/Agenda/Booking[Id=$id]
+    )
 };

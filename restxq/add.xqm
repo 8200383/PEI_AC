@@ -31,6 +31,7 @@ declare %rest:path("add")
 declare updating function local:booking($preferred_date as xs:string) {
     let $database := db:open("santadb", "data")
 
+    (:TODO: verificar repetitividade e negatividade do inteiro:)
     let $booking := <Booking>
                         <Id>{random:integer()}</Id>
                         <Date>{$preferred_date}</Date>
