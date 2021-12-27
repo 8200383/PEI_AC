@@ -32,17 +32,17 @@ declare updating function local:booking($preferred_date as xs:string) {
     let $booking := <Booking>
                         <Id>{random:integer()}</Id>
                         <Date>{$preferred_date}</Date>
-                        <Families>1</Families>
+                        <Availability>49</Availability>
                     </Booking>
 
     for $x in $database//Book/Agenda
     let $query := $x/Booking/Date
     return if ($query = $preferred_date) then (
 
-        let $limit := $x/Booking/Families
-        return if ($limit < 50) then (
+        let $target := $x/Booking/Availability
+        return if ($target > 0) then (
             update:output("Succesfully Booked!"),
-            replace value of node $limit with $limit + 1
+            replace value of node $target with $target - 1
         ) else (
             update:output("This date is allready full!")
         )
