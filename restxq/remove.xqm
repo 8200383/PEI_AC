@@ -7,7 +7,7 @@ declare %rest:path("remove")
   %rest:DELETE
   %rest:consumes("application/xml")
   updating
-  function local:remove($xml as item()) {
+  function local:remove($id as xs:integer) {
 
     let $database_exists := if (not(db:exists("santadb", "data"))) then (
         <error>
