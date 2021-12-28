@@ -3,21 +3,11 @@ xquery version "3.1";
 module namespace local = 'http://basex.org/modules/web-page';
 
 declare %rest:path("remove")
-  %rest:POST("{$xml}")
+  %rest:query-param("id","{$id}")
+  %rest:DELETE
   %rest:consumes("application/xml")
   updating
   function local:remove($xml as item()) {
-
-    let $xsd := "../xsd/CancelReservationSchema.xsd"
-
-    let $validation := try {
-        validate:xsd($xml, $xsd)
-    } catch validate:* {
-        <error>
-            <code>{$err:code}</code>
-            <cause>{$err:description}</cause>
-        </error>
-    }
 
     let $database_exists := if (not(db:exists("santadb", "data"))) then (
         <error>
@@ -25,14 +15,14 @@ declare %rest:path("remove")
         </error>
     )
 
-    return (update:output($database_exists), local:deleteBooking($xml//@id))
+    return (update:output($database_exists), local:deleteBooking($id))
 };
 
-declare updating function local:deleteBooking($id as xs:integer) {
+declare updating function local:deleteBooking($bookingId as xs:integer) {
     let $database := db:open("santadb", "data")
 
     return (
         update:output("Succesfully Deleted!"),
-        delete node $database/Book/Agenda/Booking[Id=$id]
+        delete node $database/Book/Agenda/Booking[Id=$bookingId]
     )
 };
