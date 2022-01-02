@@ -23,7 +23,7 @@ function local:addv2($body as document-node()) {
             element Id {$generated_id},
             element NumberOfElements {$number_of_members},
             element ScheduleDate {$has_availability},
-            element Members{$members}
+            element Members {$members}
         }
       }
 
