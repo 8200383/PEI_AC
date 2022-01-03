@@ -21,6 +21,7 @@ function local:addv2($body as document-node()) {
     let $booking := document {
         element Booking {
             element Id {$generated_id},
+            element Canceled {fn:false()},
             element NumberOfElements {$number_of_members},
             element ScheduleDate {$has_availability},
             element Members {$members}
