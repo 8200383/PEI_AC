@@ -1,0 +1,100 @@
+{
+	"info": {
+		"_postman_id": "7b6fee2b-516b-48d2-8d85-8482df2c0c4e",
+		"name": "BaseX",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://localhost:8984/init",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8984/init",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8984",
+					"path": [
+						"init"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8984/list",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8984/list",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8984",
+					"path": [
+						"list"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8984/addv2",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n<Reservations xmlns=\"https://www.w3schools.com/ReservationSchema\">\n    <Reservation>\n        <Family>\n            <Member>\n                <Name>Joel</Name>\n                <Country>Portugal</Country>\n                <City>Porto</City>\n                <Birthday>2002-09-24</Birthday>\n            </Member>\n            <Member>\n                <Name>Pedro</Name>\n                <Country>Portugal</Country>\n                <City>Felgueiras</City>\n                <Birthday>2002-10-30</Birthday>\n            </Member>\n        </Family>\n        <Days>\n            <Day>2014-02-24</Day>\n            <Day>2014-09-25</Day>\n        </Days>\n    </Reservation>\n</Reservations>",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8984/addv2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8984",
+					"path": [
+						"addv2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8984/cancel?id=1",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8984/cancel?id=1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8984",
+					"path": [
+						"cancel"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
