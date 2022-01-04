@@ -1,34 +1,40 @@
 import os
 import requests
+from datetime import datetime
 from bs4 import BeautifulSoup
 from pymongo import MongoClient
 from dotenv import load_dotenv
 
-url = "http://localhost:8984/list"
-req = requests.get(url)
-soup = BeautifulSoup(req.content, "xml")
 
-
-def upload_to_mongo():
+def upload_to_mongo(json_document):
     load_dotenv()
     uri = os.getenv("MONGODB_URI")
+
     client = MongoClient(uri)
-    print(client)
+    collection = client.SantaDB.Bookings
+    return collection.insert_many(json_document).inserted_ids
 
 
-upload_to_mongo()
+def query_basex_for_bookings():
+    url = "http://localhost:8984/list"
+    req = requests.get(url)
+    return BeautifulSoup(req.content, "xml")
 
 
-def extract_xml(xml):
+def convert_string_to_datetime(date_str):
+    return datetime.strptime(date_str, "%Y-%m-%d")
+
+
+def xml_to_json(xml_document):
     output = []
 
-    bookings = xml.Bookings.findAll('Booking')
+    bookings = xml_document.Bookings.findAll('Booking')
     for booking in bookings:
         _booking = {
             "Id": int(booking.Id.string),
             "Canceled": bool(booking.Canceled.string),
             "NumberOfMembers": int(booking.NumberOfMembers.string),
-            "ScheduleDate": booking.ScheduleDate.string,
+            "ScheduleDate": convert_string_to_datetime(booking.ScheduleDate.string),
             "Members": []
         }
         members = booking.Members.findAll('Member')
@@ -37,10 +43,17 @@ def extract_xml(xml):
                 "Name": member.Name.string,
                 "Country": member.Country.string,
                 "City": member.City.string,
-                "Birthday": member.Birthday.string
+                "Birthday": convert_string_to_datetime(member.Birthday.string)
             }
             _booking["Members"].append(_member)
 
         output.append(_booking)
 
     return output
+
+
+if __name__ == '__main__':
+    xml = query_basex_for_bookings()
+    json = xml_to_json(xml)
+    if upload_to_mongo(json):
+        print("Succesfully migrated!")
