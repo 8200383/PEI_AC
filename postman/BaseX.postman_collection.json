@@ -6,7 +6,7 @@
 	},
 	"item": [
 		{
-			"name": "http://localhost:8984/init",
+			"name": "Init Database",
 			"request": {
 				"method": "GET",
 				"header": [],
@@ -25,7 +25,7 @@
 			"response": []
 		},
 		{
-			"name": "http://localhost:8984/list",
+			"name": "List Bookings",
 			"request": {
 				"method": "GET",
 				"header": [],
@@ -44,13 +44,13 @@
 			"response": []
 		},
 		{
-			"name": "http://localhost:8984/addv2",
+			"name": "Add Booking",
 			"request": {
 				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n<Reservations xmlns=\"https://www.w3schools.com/ReservationSchema\">\n    <Reservation>\n        <Family>\n            <Member>\n                <Name>Joel</Name>\n                <Country>Portugal</Country>\n                <City>Porto</City>\n                <Birthday>2002-09-24</Birthday>\n            </Member>\n            <Member>\n                <Name>Pedro</Name>\n                <Country>Portugal</Country>\n                <City>Felgueiras</City>\n                <Birthday>2002-10-30</Birthday>\n            </Member>\n        </Family>\n        <Days>\n            <Day>2014-02-24</Day>\n            <Day>2014-09-25</Day>\n        </Days>\n    </Reservation>\n</Reservations>",
+					"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n<Reservations xmlns=\"https://www.w3schools.com/ReservationSchema\">\n    <Reservation>\n        <Family>\n            <Member>\n                <Name>Joel</Name>\n                <Country>Portugal</Country>\n                <City>Porto</City>\n                <Birthday>2002-09-24</Birthday>\n            </Member>\n            <Member>\n                <Name>Pedro</Name>\n                <Country>Portugal</Country>\n                <City>Felgueiras</City>\n                <Birthday>2002-10-30</Birthday>\n            </Member>\n        </Family>\n        <Days>\n            <Day>2014-02-24</Day>\n        </Days>\n    </Reservation>\n</Reservations>",
 					"options": {
 						"raw": {
 							"language": "xml"
@@ -72,7 +72,7 @@
 			"response": []
 		},
 		{
-			"name": "http://localhost:8984/cancel?id=1",
+			"name": "Delete Booking",
 			"request": {
 				"method": "DELETE",
 				"header": [],
@@ -90,6 +90,54 @@
 						{
 							"key": "id",
 							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Simple Availability",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8984/availability",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8984",
+					"path": [
+						"availability"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Complex Availability",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8984/availability?from=2000-10-31&to=2022-01-04",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8984",
+					"path": [
+						"availability"
+					],
+					"query": [
+						{
+							"key": "from",
+							"value": "2000-10-31"
+						},
+						{
+							"key": "to",
+							"value": "2022-01-04"
 						}
 					]
 				}

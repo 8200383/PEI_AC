@@ -2,29 +2,43 @@ xquery version "3.1";
 
 module namespace local = 'http://basex.org/modules/web-page';
 
-declare %rest:path("availibilty")
-  %rest:query-param("from","{$from}")
-  %rest:query-param("to","{$to}")
-  %rest:GET
-  updating
-  function local:availibilty($from as xs:string?, $to as xs:string?) {
+declare
+%rest:path("availability")
+%rest:query-param("from","{$from}")
+%rest:query-param("to","{$to}")
+%rest:GET
+function local:availability($from as xs:string?, $to as xs:string?) {
 
-  let $database := db:open("santadb", "data")
+    let $database := db:open("santadb", "data")//Bookings
+    let $bookings := $database/Booking[Canceled = fn:false()]
 
-  return if (not($from) or not($to)) then(
-      for $x in $database//Book/Agenda/Booking
-      return update:output(<info>
-                <Date>{$x/Date/text()}</Date>
-                <availability>{$x/Availability/text()}</availability>
-             </info>),
-            update:output("If the date you are looking for is not here, its because is totally available.")
-  )else(
-      for $x in $database//Book/Agenda/Booking
-      where $x[xs:date($from)<Date][Date<xs:date($to)]
-      return update:output(<info>
-                <Date>{$x/Date/text()}</Date>
-                <availability>{$x/Availability/text()}</availability>
-             </info>),
-            update:output("If the date you are looking for is not here and it's between the dates that you put, its because is totally available.")
-  )
+    return (
+        if (not($database)) then (fn:error(xs:QName("Database"), "Database can't be open")),
+        if (not($from) and not($to)) then (
+            for $x in $bookings
+            let $scheduleDate := xs:date($x/ScheduleDate)
+            group by $scheduleDate
+            return (
+                <Availability>
+                    <Date>{$scheduleDate}</Date>
+                    <AvailableSlots>{50 - count($x)}</AvailableSlots>
+                </Availability>
+            )
+        ) else (
+            if(xs:date($from) > xs:date($to)) then (
+                fn:error(xs:QName("Validation"), "Starting date is higher then ending date!")
+            ) else (
+                for $x in $bookings
+                let $scheduleDate := xs:date($x/ScheduleDate)
+                where $scheduleDate >= xs:date($from) and $scheduleDate <= xs:date($to)
+                group by $scheduleDate
+                return (
+                    <Availability>
+                        <Date>{$scheduleDate}</Date>
+                        <AvailableSlots>{50 - count($x)}</AvailableSlots>
+                    </Availability>
+               )
+            )
+        )
+    )
 };
