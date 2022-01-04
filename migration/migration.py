@@ -35,6 +35,8 @@ def xml_to_json(xml_document):
             "Canceled": bool(booking.Canceled.string),
             "NumberOfMembers": int(booking.NumberOfMembers.string),
             "ScheduleDate": convert_string_to_datetime(booking.ScheduleDate.string),
+            "City": booking.Members.Member.City.string,
+            "Country": booking.Members.Member.Country.string,
             "Members": []
         }
         members = booking.Members.findAll('Member')
