@@ -1,13 +1,13 @@
 xquery version "3.1";
 
-module namespace local = 'http://basex.org/modules/web-page';
+module namespace ava = 'http://basex.org/availability';
 
 declare
 %rest:path("availability")
 %rest:query-param("from","{$from}")
 %rest:query-param("to","{$to}")
 %rest:GET
-function local:availability($from as xs:string?, $to as xs:string?) {
+function ava:availability($from as xs:string?, $to as xs:string?) {
 
     let $database := db:open("santadb", "data")//Bookings
     let $bookings := $database/Booking[Canceled = fn:false()]
@@ -21,7 +21,7 @@ function local:availability($from as xs:string?, $to as xs:string?) {
             return (
                 <Availability>
                     <Date>{$scheduleDate}</Date>
-                    <AvailableSlots>{50 - count($x)}</AvailableSlots>
+                    <AvailableSlots>{1 - count($x)}</AvailableSlots>
                 </Availability>
             )
         ) else (
@@ -35,7 +35,7 @@ function local:availability($from as xs:string?, $to as xs:string?) {
                 return (
                     <Availability>
                         <Date>{$scheduleDate}</Date>
-                        <AvailableSlots>{50 - count($x)}</AvailableSlots>
+                        <AvailableSlots>{1 - count($x)}</AvailableSlots>
                     </Availability>
                )
             )

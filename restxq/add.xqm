@@ -1,5 +1,6 @@
+module namespace local = 'http://basex.org/add';
 
-module namespace local = 'http://basex.org';
+import module namespace ava = 'http://basex.org/availability' at 'availability.xqm';
 
 declare %updating
 %rest:path("/addv2")
@@ -23,12 +24,12 @@ function local:addv2($body as document-node()) {
             element Id {$generated_id},
             element Canceled {fn:false()},
             element NumberOfMembers {$number_of_members},
-            element ScheduleDate {$has_availability},
+            element ScheduleDate {$has_availability[position()=1]},
             element Members {$members}
         }
       }
 
-    return (
+   return (
         if ($is_not_valid) then (fn:error(xs:QName("Validation"), "The XML is invalid")),
         if (not($database)) then (fn:error(xs:QName("Database"), "Database can't be open")),
         if (not($has_availability)) then (
@@ -44,6 +45,8 @@ declare function local:find_availability($dates as item()*) {
     let $db := db:open("santadb", "data")//Bookings
 
     for $date in $dates
-    where fn:count($db/*/[ScheduleDate = $date/text()]) < 1
-    return $date/text()
+    let $date_availability := ava:availability("","")/Availability[Date=$date]/AvailableSlots/text()
+    return if (xs:integer($date_availability)>0 or not($date_availability)) then(
+        $date/text()
+    )
 };
