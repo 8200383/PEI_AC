@@ -1,6 +1,8 @@
 db.getSiblingDB("SantaDB").getCollection("Bookings").aggregate([
     {
-        $match: {"ScheduleDate": {$lte: new ISODate()}}
+        $match: {
+            ScheduleDate: {$lte: new ISODate()}
+        }
     },
     {
         $group: {
@@ -9,6 +11,9 @@ db.getSiblingDB("SantaDB").getCollection("Bookings").aggregate([
         }
     },
     {
-        $project: {"BookingsUntilTotal": "bookings", "_id": 0}
+        $project: {
+            BookingsUntilTotal: "$bookings",
+            _id: 0
+        }
     }
 ])
