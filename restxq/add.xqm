@@ -45,7 +45,7 @@ declare function local:find_availability($dates as item()*) {
     let $db := db:open("santadb", "data")//Bookings
 
     for $date in $dates
-    let $date_availability := ava:availability("","")/Availability[Date=$date]/AvailableSlots/text()
+    let $date_availability := ava:availability("","")[Date=$date]/*[name(.) = "AvailableSlots"]/text()
     return if (xs:integer($date_availability)>0 or not($date_availability)) then(
         $date/text()
     )

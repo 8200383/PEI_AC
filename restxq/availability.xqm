@@ -21,7 +21,7 @@ function ava:availability($from as xs:string?, $to as xs:string?) {
             return (
                 <Availability>
                     <Date>{$scheduleDate}</Date>
-                    <AvailableSlots>{1 - count($x)}</AvailableSlots>
+                    <AvailableSlots>{50 - count($x)}</AvailableSlots>
                 </Availability>
             )
         ) else (
@@ -35,10 +35,11 @@ function ava:availability($from as xs:string?, $to as xs:string?) {
                 return (
                     <Availability>
                         <Date>{$scheduleDate}</Date>
-                        <AvailableSlots>{1 - count($x)}</AvailableSlots>
+                        <AvailableSlots>{50 - count($x)}</AvailableSlots>
                     </Availability>
                )
             )
         )
+        ,<Info> If the date you are looking for is not here its because all slots are available </Info>
     )
 };
