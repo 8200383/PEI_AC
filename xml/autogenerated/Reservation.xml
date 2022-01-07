@@ -1,18 +1,15 @@
-<res:Reservations xmlns:res="https://www.w3schools.com/ReservationSchema">
-  <!--1 or more repetitions:-->
-  <res:Reservation>
+<res:Reservation xmlns:res="https://www.w3schools.com/ReservationSchema">
     <res:Family>
-      <!--1 to 7 repetitions:-->
-      <res:Member>
-        <res:Name>string</res:Name>
-        <res:Country>string</res:Country>
-        <res:City>string</res:City>
-        <res:Birthday>2008-09-29</res:Birthday>
-      </res:Member>
+        <!--1 to 7 repetitions:-->
+        <res:Member>
+            <res:Name>string</res:Name>
+            <res:Country>string</res:Country>
+            <res:City>string</res:City>
+            <res:Birthday>2008-09-29</res:Birthday>
+        </res:Member>
     </res:Family>
     <res:Days>
-      <!--1 to 5 repetitions:-->
-      <res:Day>2014-09-19</res:Day>
+        <!--1 to 5 repetitions:-->
+        <res:Day>2014-09-19</res:Day>
     </res:Days>
-  </res:Reservation>
-</res:Reservations>
+</res:Reservation>

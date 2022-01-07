@@ -24,19 +24,13 @@
             <xs:element name="Member" type="rs:MemberType" maxOccurs="7"/>
         </xs:sequence>
     </xs:complexType>
-
-    <xs:element name="Reservations">
+    <xs:element name="Reservation">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="Reservation" maxOccurs="unbounded">
-                    <xs:complexType>
-                        <xs:sequence>
-                            <xs:element name="Family" type="rs:FamilyType"/>
-                            <xs:element name="Days" type="rs:DaysType"/>
-                        </xs:sequence>
-                    </xs:complexType>
-                </xs:element>
+                <xs:element name="Family" type="rs:FamilyType"/>
+                <xs:element name="Days" type="rs:DaysType"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
+
 </xs:schema>

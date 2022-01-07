@@ -13,10 +13,10 @@ function local:addv2($body as document-node()) {
     let $database := db:open("santadb", "data")//Bookings
 
     let $generated_id := fn:count($database/*) + 1
-    let $number_of_members := fn:count($body/*/*/*[name(.) = "Family"]/*)
-    let $members := $body/*/*/*[name(.) = "Family"]/*[name(.) = "Member"]
+    let $number_of_members := fn:count($body/*/*[name(.) = "Family"]/*)
+    let $members := $body/*/*[name(.) = "Family"]/*[name(.) = "Member"]
 
-    let $preferred_dates := $body/*/*/*[name(.) = "Days"]/*
+    let $preferred_dates := $body/*/*[name(.) = "Days"]/*
     let $has_availability := local:find_availability($preferred_dates)
 
     let $booking := document {
@@ -35,7 +35,8 @@ function local:addv2($body as document-node()) {
         if (not($has_availability)) then (
             fn:error(xs:QName("Availability"), "These dates are allready full")
         ) else (
-            update:output("Successfully booked!"),
+            update:output("Successfully booked, the reservation ID is: "),
+            update:output($generated_id),
             insert node $booking as first into $database
         )
     )
