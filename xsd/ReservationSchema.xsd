@@ -16,7 +16,7 @@
     <xs:simpleType name="DayType">
         <xs:restriction base="xs:date">
             <xs:minInclusive value="2021-10-16"/>
-            <xs:maxInclusive value="2022-01-06"/>
+            <xs:maxInclusive value="2021-12-25"/>
             <xs:pattern value=".{10}"/>
         </xs:restriction>
     </xs:simpleType>
