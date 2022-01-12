@@ -13,6 +13,7 @@ function local:addv2($body as document-node()) {
     let $database := db:open("santadb", "data")//Bookings
 
     let $generated_id := fn:count($database/*) + 1
+    let $number_of_families_in_db := fn:count($database/*[Canceled=fn:false()]/*[name(.) = "Members"])
     let $number_of_members := fn:count($body/*/*[name(.) = "Family"]/*)
     let $members := $body/*/*[name(.) = "Family"]/*[name(.) = "Member"]
 
@@ -32,6 +33,7 @@ function local:addv2($body as document-node()) {
    return (
         if ($is_not_valid) then (fn:error(xs:QName("Validation"), "The XML is invalid")),
         if (not($database)) then (fn:error(xs:QName("Database"), "Database can't be open")),
+        if ($number_of_families_in_db>=5000) then (fn:error(xs:QName("Families_Full"), "There are already 5000 families")),
         if (not($has_availability)) then (
             fn:error(xs:QName("Availability"), "These dates are allready full")
         ) else (

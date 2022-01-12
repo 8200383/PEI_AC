@@ -2,20 +2,34 @@
 <Reservation xmlns="https://www.w3schools.com/ReservationSchema">
     <Family>
         <Member>
-            <Name>Joel</Name>
+            <Name>Josefina Fonseca</Name>
             <Country>Portugal</Country>
             <City>Porto</City>
-            <Birthday>2002-09-24</Birthday>
+            <Birthday>1980-07-11</Birthday>
         </Member>
         <Member>
-            <Name>Pedro</Name>
+            <Name>Aurélio Ferreira</Name>
+            <Country>Portugal</Country>
+            <City>Porto</City>
+            <Birthday>1972-03-26</Birthday>
+        </Member>
+        <Member>
+            <Name>Gertrudes Ferreira</Name>
             <Country>Portugal</Country>
             <City>Felgueiras</City>
-            <Birthday>2002-10-30</Birthday>
+            <Birthday>2017-11-10</Birthday>
+        </Member>
+        <Member>
+            <Name>Bartolomeu Ferreira</Name>
+            <Country>Portugal</Country>
+            <City>Felgueiras</City>
+            <Birthday>2015-07-31</Birthday>
         </Member>
     </Family>
     <Days>
-        <Day>2014-09-24</Day>
-        <Day>2014-09-25</Day>
+        <Day>2021-12-23</Day>
+        <Day>2021-12-22</Day>
+        <Day>2021-12-21</Day>
+        <Day>2021-12-20</Day>
     </Days>
 </Reservation>
