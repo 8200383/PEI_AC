@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "7b6fee2b-516b-48d2-8d85-8482df2c0c4e",
+		"_postman_id": "9e03a1b2-ab6f-4ce7-8b36-7a7dc7be1e45",
 		"name": "BaseX",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -50,7 +50,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n<Reservations xmlns=\"https://www.w3schools.com/ReservationSchema\">\n    <Reservation>\n        <Family>\n            <Member>\n                <Name>Joel</Name>\n                <Country>Portugal</Country>\n                <City>Porto</City>\n                <Birthday>2002-09-24</Birthday>\n            </Member>\n            <Member>\n                <Name>Pedro</Name>\n                <Country>Portugal</Country>\n                <City>Felgueiras</City>\n                <Birthday>2002-10-30</Birthday>\n            </Member>\n        </Family>\n        <Days>\n            <Day>2014-02-24</Day>\n        </Days>\n    </Reservation>\n</Reservations>",
+					"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n<Reservation xmlns=\"https://www.w3schools.com/ReservationSchema\">\n    <Family>\n        <Member>\n            <Name>Josefina Fonseca</Name>\n            <Country>Portugal</Country>\n            <City>Porto</City>\n            <Birthday>1980-07-11</Birthday>\n        </Member>\n        <Member>\n            <Name>Aurélio Ferreira</Name>\n            <Country>Portugal</Country>\n            <City>Porto</City>\n            <Birthday>1972-03-26</Birthday>\n        </Member>\n        <Member>\n            <Name>Gertrudes Ferreira</Name>\n            <Country>Portugal</Country>\n            <City>Felgueiras</City>\n            <Birthday>2017-11-10</Birthday>\n        </Member>\n        <Member>\n            <Name>Gertrudes Ferreira</Name>\n            <Country>Portugal</Country>\n            <City>Felgueiras</City>\n            <Birthday>2015-07-31</Birthday>\n        </Member>\n    </Family>\n    <Days>\n        <Day>2021-12-23</Day>\n        <Day>2021-12-22</Day>\n        <Day>2021-12-21</Day>\n        <Day>2021-12-20</Day>\n    </Days>\n</Reservation>",
 					"options": {
 						"raw": {
 							"language": "xml"
