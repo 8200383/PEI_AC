@@ -1,5 +1,33 @@
 # Relatório de PEI
 
+## Estrutura do projeto
+- `/data`: Base de dados
+- `/migration`: Script de migração
+- `/mongo`: Query's
+- `/postman`: Coleção de endpoints
+- `/restxq`: Rest API
+- `/xml`: Exemplos de XML
+- `/xsd`: XSD Schemas
+
+## Links
+
+
+## Contextualização
+No âmbito da unidade curricular `Processamento Estruturado de Informação` para efeitos de avaliação contínua realizámos um trabalho prático
+com a finalidade de fornecer uma REST API ao "Pai Natal" de forma a facilitar a informação necessária para a realização de 
+agendamentos das famílias.
+
+Sabemos ainda que o "Pai Natal" dicidiu disponibilizar visitas à sua oficina 100 dias antes do natal porém, a demanda é imensa fazendo com 
+que o "Pai Natal" desejasse tornar o processo de agendamento o mais justo e eficaz possível, para tal foi permitido um número máximo de 
+5.000 famílias sendo apenas possível a visita de 50 famílias por dia.
+
+Assim, nós o grupo 1, os entusiastas da programação, decidiram ajudar o "Pai Natal" criando uma `API`
+com recurso a tecnologias como: `BaseX`, `MongoDB`, `Postman` e linguagens: `XQuery`, `XPath`, `Js`, `Py`
+
+## Caracterização do caso de estudo
+
+Todos tem uma API incluíndo o Pai Natal!
+
 ## Identificação das propriedades do XSD
 
 ### Namespaces
