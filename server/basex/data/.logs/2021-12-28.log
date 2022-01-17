@@ -1,0 +1,10 @@
+15:12:09.635	SERVER	admin	OK	Server was started (port: 1984).
+15:12:09.808	SERVER	admin	OK	HTTP Server was started (port: 8984).
+15:15:49.847	[0:0:0:0:0:0:0:1]:54210	admin	REQUEST	[GET] /init
+15:15:52.433	[0:0:0:0:0:0:0:1]:54210	admin	404	Service not found.	2588.45 ms
+15:16:44.769	[0:0:0:0:0:0:0:1]:54210	admin	REQUEST	[GET] /init
+15:16:44.775	[0:0:0:0:0:0:0:1]:54210	admin	404	Service not found.	11.24 ms
+15:17:01.416	[0:0:0:0:0:0:0:1]:54210	admin	REQUEST	[GET] /init
+15:17:01.421	[0:0:0:0:0:0:0:1]:54210	admin	404	Service not found.	5.12 ms
+15:17:24.203	SERVER	admin	OK	Server was stopped (port: 1984).
+15:17:24.204	SERVER	admin	OK	HTTP Server was stopped (port: 8984).
