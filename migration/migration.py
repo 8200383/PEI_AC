@@ -4,6 +4,7 @@ from datetime import datetime
 from bs4 import BeautifulSoup
 from pymongo import MongoClient
 from dotenv import load_dotenv
+from bson.json_util import dumps
 
 
 def upload_to_mongo(json_document):
@@ -11,8 +12,17 @@ def upload_to_mongo(json_document):
     uri = os.getenv("MONGODB_URI")
 
     client = MongoClient(uri)
-    collection = client.SantaDB.Bookings
-    return collection.insert_many(json_document).inserted_ids
+    return client.SantaDB.Bookings
+
+
+def export_to_json(mongo_collection):
+    cursor = mongo_collection.find({})
+    with open('collection.json', 'w') as file:
+        file.write('[')
+        for document in cursor:
+            file.write(dumps(document))
+            file.write(',')
+        file.write(']')
 
 
 def query_basex_for_bookings():
@@ -57,5 +67,7 @@ def xml_to_json(xml_document):
 if __name__ == '__main__':
     xml = query_basex_for_bookings()
     json = xml_to_json(xml)
-    if upload_to_mongo(json):
-        print("Succesfully migrated!")
+    collection = upload_to_mongo(json)
+    collection.delete_many({})
+    collection.insert_many(json)
+    export_to_json(collection)
