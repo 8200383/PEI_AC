@@ -1,6 +1,5 @@
 # BaseX
 /data/.logs
-*.basex
 
 # User-specific stuff
 .idea/**/workspace.xml
