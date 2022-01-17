@@ -3,7 +3,7 @@
 ## Identificação das propriedades do XSD
 
 ### Namespaces
-No seguinte excerto de código deparamo-nos com o targetNamespace cuja declaração tem como significado que todos 
+No seguinte excerto de código declaramos o `targetNamespace` cuja declaração tem como significado que todos 
 os elementos (filhos do root) do documento pertencem ao mesmo namespace, é normal a utilização do atributo `elementFormDefault`
 na definição do XSD com a finalidade de indicar que todos os elementos são qualified ou seja que estão associados ao target 
 namespace.
@@ -24,7 +24,7 @@ estão declarados no namespace.
 ```
 
 ### Elementos do XSD
-Este excerto de código permite a definição do elemento "Reservation" com os seus respetivos 
+Este excerto de código permite a definição do elemento `Reservation` com os seus respetivos 
 elementos `Family` e `Days` e os seus respetivos tipos.
 ```xml
 
@@ -71,7 +71,7 @@ O seguinte excerto de código permite a definição de uma sequência com o valo
 ```
 
 #### MemberType
-O seguinte excerto de código permite definir o tipo complexo "MemberType" que constituí uma sequência de 
+O seguinte excerto de código permite definir o tipo complexo `MemberType` que constituí uma sequência de 
 strings tais como: `Name`, `Country`, `City`, `Birthday`.
 ```xml
 
@@ -99,8 +99,8 @@ O seguinte excerto de codigo permite definir uma sequência máxima de datas at�
 ### Tipos Simples
 
 #### DayType
-O seguinte excerto de codigo define um tipo simples chamado "DayType" com uma restrição. Este deve ter
-exatamente 10 caracteres, a data deve estar compreendida entre "2021-10-16" e "2021-12-25".
+O seguinte excerto de codigo define um tipo simples chamado `DayType` com uma restrição. Este deve ter
+exatamente 10 caracteres, a data deve estar compreendida entre `2021-10-16` e `2021-12-25`.
 ```xml
 
 <xs:simpleType name="DayType">
