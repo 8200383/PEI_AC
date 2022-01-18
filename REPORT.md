@@ -10,7 +10,7 @@
 - `/xsd`: XSD Schemas
 
 ## Links
-[Mongo Charts](google.com)
+[Mongo Charts](https://charts.mongodb.com/charts-pai-natal-api-project-lcgdq/public/dashboards/1c4cbf98-01cd-4d74-ba63-125efb4e4d4f)
 
 ## Contextualização e Caracterização do caso de estudo
 No âmbito da unidade curricular `Processamento Estruturado de Informação` para efeitos de avaliação contínua realizámos 
