@@ -10,9 +10,9 @@
 - `/xsd`: XSD Schemas
 
 ## Links
+[Mongo Charts](google.com)
 
-
-## Contextualização
+## Contextualização e Caracterização do caso de estudo
 No âmbito da unidade curricular `Processamento Estruturado de Informação` para efeitos de avaliação contínua realizámos um trabalho prático
 com a finalidade de fornecer uma REST API ao "Pai Natal" de forma a facilitar a informação necessária para a realização de 
 agendamentos das famílias.
@@ -21,12 +21,36 @@ Sabemos ainda que o "Pai Natal" dicidiu disponibilizar visitas à sua oficina 10
 que o "Pai Natal" desejasse tornar o processo de agendamento o mais justo e eficaz possível, para tal foi permitido um número máximo de 
 5.000 famílias sendo apenas possível a visita de 50 famílias por dia.
 
-Assim, nós o grupo 1, os entusiastas da programação, decidiram ajudar o "Pai Natal" criando uma `API`
-com recurso a tecnologias como: `BaseX`, `MongoDB`, `Postman` e linguagens: `XQuery`, `XPath`, `Js`, `Py`
-
-## Caracterização do caso de estudo
+Assim, nós o grupo nº1, os entusiastas da programação, decidiram ajudar o "Pai Natal" criando uma `API`
+com recurso a tecnologias como: `BaseX`, `MongoDB`, `Postman` e linguagens: `XQuery`, `XPath`, `Js`, `Py`.
 
 Todos tem uma API incluíndo o Pai Natal!
+
+
+## Abordagem do problema
+Conforme o enunciado nos indica para efetuar uma reserva é necessário explicitar as datas de preferência da família 
+e os respetivos elemetos que constituem o agregado familiar até 7 membros, ou seja cada elemento da família deve
+introduzir o seu `Name`, `Country`, `City` e `Birthday`.
+
+De forma a agilizar o processo de agendamento das visitas à oficina do "Pai Natal", desenvolve-mos uma REST API em BaseX
+com vários endpoints que permitem de forma fácil adicionar e remover reservas bem como verificar a disponibilidade entre
+duas datas.
+
+Esta REST API consome um ficheiro XML que posteriormente é validado contra um ficheiro XSD Schema e mais tarde estes dados
+são armazenados na base de dados do `BaseX` e no final é devolvido o id da reserva autogerado e único.
+
+Para complementar desenvolve-mos também um dashboard analítico com recurso ao serviço `Mongo Charts` de forma a promover 
+uma melhor visualização dos dados das reservas, estas ínclui: 
+- `📊 Average of persons per day`
+- `📊 Number of cancellations per day`
+- `📊 Percentage of occupation per day`
+- `📊 Total bookings country`
+- `📊 Total bookings per city`
+- `📊 Sum of bookings until today`
+- `📊 Total of Families per day`
+
+Foi também desenvolvido um script de migração em linguagem `Python` que agiliza o processo de migração entre a API do 
+`BaseX` e o `MongoDB`.
 
 ## Identificação das propriedades do XSD
 
