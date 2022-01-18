@@ -13,13 +13,14 @@
 [Mongo Charts](google.com)
 
 ## Contextualização e Caracterização do caso de estudo
-No âmbito da unidade curricular `Processamento Estruturado de Informação` para efeitos de avaliação contínua realizámos um trabalho prático
-com a finalidade de fornecer uma REST API ao "Pai Natal" de forma a facilitar a informação necessária para a realização de 
-agendamentos das famílias.
+No âmbito da unidade curricular `Processamento Estruturado de Informação` para efeitos de avaliação contínua realizámos 
+um trabalho prático com a finalidade de fornecer uma REST API ao "Pai Natal" de forma a facilitar a informação
+necessária para a realização de agendamentos das famílias.
 
-Sabemos ainda que o "Pai Natal" dicidiu disponibilizar visitas à sua oficina 100 dias antes do natal porém, a demanda é imensa fazendo com 
-que o "Pai Natal" desejasse tornar o processo de agendamento o mais justo e eficaz possível, para tal foi permitido um número máximo de 
-5.000 famílias sendo apenas possível a visita de 50 famílias por dia.
+Sabemos ainda que o "Pai Natal" decidiu disponibilizar visitas à sua oficina 100 dias antes do natal porém, a demanda é 
+imensa fazendo com que o "Pai Natal" desejasse tornar o processo de agendamento o mais justo e eficaz possível, para 
+satisfazer esta necessidade foi elaborada uma restrição com um número máximo de 5.000 famílias sendo apenas possível a
+visita de 50 famílias por dia.
 
 Assim, nós o grupo nº1, os entusiastas da programação, decidiram ajudar o "Pai Natal" criando uma `API`
 com recurso a tecnologias como: `BaseX`, `MongoDB`, `Postman` e linguagens: `XQuery`, `XPath`, `Js`, `Py`.
