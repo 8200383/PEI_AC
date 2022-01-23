@@ -1,18 +1,9 @@
 import os
 import requests
-from datetime import datetime
 from bs4 import BeautifulSoup
 from pymongo import MongoClient
 from dotenv import load_dotenv
 from bson.json_util import dumps
-
-
-def upload_to_mongo():
-    load_dotenv()
-    uri = os.getenv("MONGODB_URI")
-
-    client = MongoClient(uri)
-    return client.SantaDB.Bookings
 
 
 def export_to_json(mongo_collection):
@@ -25,26 +16,16 @@ def export_to_json(mongo_collection):
         file.write(']')
 
 
-def query_basex_for_bookings():
-    url = "http://localhost:8984/list"
-    req = requests.get(url)
-    return BeautifulSoup(req.content, "xml")
-
-
-def convert_string_to_datetime(date_str):
-    return datetime.strptime(date_str, "%Y-%m-%d")
-
-
 def xml_to_json(xml_document):
     output = []
-
     bookings = xml_document.Bookings.findAll('Booking')
+
     for booking in bookings:
         _booking = {
-            "Id": int(booking.Id.string),
-            "Canceled": bool(booking.Canceled.string),
-            "NumberOfMembers": int(booking.NumberOfMembers.string),
-            "ScheduleDate": convert_string_to_datetime(booking.ScheduleDate.string),
+            "Id": booking.Id.string,
+            "Canceled": booking.Canceled.string,
+            "NumberOfMembers": booking.NumberOfMembers.string,
+            "ScheduleDate": booking.ScheduleDate.string,
             "City": booking.Members.Member.City.string,
             "Country": booking.Members.Member.Country.string,
             "Members": []
@@ -55,7 +36,7 @@ def xml_to_json(xml_document):
                 "Name": member.Name.string,
                 "Country": member.Country.string,
                 "City": member.City.string,
-                "Birthday": convert_string_to_datetime(member.Birthday.string)
+                "Birthday": member.Birthday.string
             }
             _booking["Members"].append(_member)
 
@@ -64,10 +45,79 @@ def xml_to_json(xml_document):
     return output
 
 
+def transform(db):
+    pipeline = [
+        {"$unwind": "$Members"},
+        {"$set": {
+            "Id": {
+                "$toInt": "$Id"
+            },
+            "Canceled": {
+                "$toBool": {
+                    "$strcasecmp": ["$Canceled", "false"],
+                },
+            },
+            "NumberOfMembers": {
+                "$toInt": "$NumberOfMembers"
+            },
+            "ScheduleDate": {
+                "$toDate": "$ScheduleDate"
+            },
+            "City": "$Members.City",
+            "Country": "$Members.Country",
+            "Members.Birthday": {
+                "$toDate": "$Members.Birthday"
+            }
+        }},
+        {"$group": {
+            "_id": "$_id",
+            "Id": {
+                "$first": "$Id"
+            },
+            "Canceled": {
+                "$first": "$Canceled"
+            },
+            "NumberOfMembers": {
+                "$first": "$NumberOfMembers"
+            },
+            "ScheduleDate":  {
+                "$first": "$ScheduleDate"
+            },
+            "City": {
+                "$first": "$City"
+            },
+            "Country": {
+                "$first": "$Country"
+            },
+            "Members": {
+                "$push": "$Members"
+            }
+        }},
+        {"$merge": {
+            "into": {"db": "SantaDB", "coll": "Bookings"},
+            "on": "_id",
+            "whenMatched": "replace",
+            "whenNotMatched": "insert"
+        }}
+    ]
+
+    db.aggregate(pipeline)
+
+
 if __name__ == '__main__':
-    xml = query_basex_for_bookings()
-    json = xml_to_json(xml)
-    collection = upload_to_mongo()
+    url = "http://localhost:8984/list"
+    req = requests.get(url)
+    soup = BeautifulSoup(req.content, "xml")
+
+    json = xml_to_json(soup)
+
+    load_dotenv()
+    uri = os.getenv("MONGODB_URI")
+
+    client = MongoClient(uri)
+    collection = client.SantaDB.Bookings
+
     collection.delete_many({})
     collection.insert_many(json)
+    transform(collection)
     export_to_json(collection)
