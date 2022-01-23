@@ -7,7 +7,7 @@ from dotenv import load_dotenv
 from bson.json_util import dumps
 
 
-def upload_to_mongo(json_document):
+def upload_to_mongo():
     load_dotenv()
     uri = os.getenv("MONGODB_URI")
 
@@ -67,7 +67,7 @@ def xml_to_json(xml_document):
 if __name__ == '__main__':
     xml = query_basex_for_bookings()
     json = xml_to_json(xml)
-    collection = upload_to_mongo(json)
+    collection = upload_to_mongo()
     collection.delete_many({})
     collection.insert_many(json)
     export_to_json(collection)
