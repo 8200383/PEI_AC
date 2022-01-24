@@ -63,8 +63,6 @@ def transform(db):
             "ScheduleDate": {
                 "$toDate": "$ScheduleDate"
             },
-            "City": "$Members.City",
-            "Country": "$Members.Country",
             "Members.Birthday": {
                 "$toDate": "$Members.Birthday"
             }
@@ -82,12 +80,6 @@ def transform(db):
             },
             "ScheduleDate":  {
                 "$first": "$ScheduleDate"
-            },
-            "City": {
-                "$first": "$City"
-            },
-            "Country": {
-                "$first": "$Country"
             },
             "Members": {
                 "$push": "$Members"
