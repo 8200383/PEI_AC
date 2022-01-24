@@ -15,5 +15,6 @@ db.getSiblingDB("SantaDB").getCollection("Bookings").aggregate([
             BookingsUntilTotal: "$bookings",
             _id: 0
         }
-    }
+    },
+    {$out: "TotalBookingsUntilToday"}
 ])

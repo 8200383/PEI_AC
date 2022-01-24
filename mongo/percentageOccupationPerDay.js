@@ -6,5 +6,6 @@ db.getSiblingDB("SantaDB").getCollection("Bookings").aggregate([
                 $sum: { $multiply: [{ $divide: [1, 50] }, 100]}
             }
         }
-    }
+    },
+    {$out: "PercentageOccupationPerDay"}
 ])

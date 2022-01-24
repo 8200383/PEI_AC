@@ -11,5 +11,6 @@ db.getSiblingDB("SantaDB").getCollection("Bookings").aggregate([
             ScheduleDate: "$_id.ScheduleDate",
             _id: 0
         }
-    }
+    },
+    {$out: "TotalFamaliesPerDay"}
 ])

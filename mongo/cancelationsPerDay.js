@@ -15,5 +15,6 @@ db.getSiblingDB("SantaDB").getCollection("Bookings").aggregate([
             Cancelations: 1,
             _id: 0
         }
-    }
+    },
+    {$out: "CancelationsPerDay"}
 ])
